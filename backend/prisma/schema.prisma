@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL") 
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  ad                String
+  soyad             String
+  telefon           String
+  kupeNo            String   @unique
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model KucukBasPerakende {
+  id                Int      @id @default(autoincrement())
+  ad                String
+  soyad             String
+  telefon           String
+  kupeNo            String   @unique
+  kesimSiraNo       Int
+  kesimSaati        Int
+  kilo              Float
+  fiyat             Float
+  tutar             Float
+  kapora            Float
+  kalan             Float 
+  siparisNotu       String   @default("Sipariş notu bulunmamakta..")  
+  hazirlanmaDurumu  String   @default("Hazırlanıyor..")     
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
